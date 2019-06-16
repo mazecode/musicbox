@@ -47,3 +47,8 @@ class User extends Authenticatable
         return $this->belongsToMany(SocialLogin::class, 'social_users', 'user_id', 'social_login_id')->using(SocialUser::class);
     }
 }
+
+/*
+ * TODO: https://scotch.io/tutorials/role-based-authentication-in-laravel-with-jwt
+ *
+ */

@@ -170,6 +170,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         Mazecode\MusicPlayer\Providers\MusicPlayerServiceProvider::class,
         Mazecode\VueGenerator\Providers\VueGeneratorServiceProvider::class,
