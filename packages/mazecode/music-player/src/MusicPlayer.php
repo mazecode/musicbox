@@ -46,7 +46,7 @@ class MusicPlayer
     protected $is_lumen = false;
 
     /**
-     * @param Application $app
+     * @param  Application  $app
      */
     public function __construct($app = null)
     {
@@ -54,6 +54,8 @@ class MusicPlayer
             $app = app();   //Fallback when $app is not given
         }
         $this->app = $app;
+
+
         $this->version = $app->version();
         $this->is_lumen = str_contains($this->version, 'Lumen');
     }

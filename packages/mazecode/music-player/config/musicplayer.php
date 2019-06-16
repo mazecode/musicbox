@@ -13,7 +13,7 @@ return [
      | You can provide an array of URI's that must be ignored (eg. 'api/*')
      |
      */
-    'enabled' => env('ENABLED', true),
+    'enabled' => env('MUSICPLAYER_ENABLED', true),
 
     /*
      |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ return [
      | from trying to overcome bugs like this: http://trac.nginx.org/nginx/ticket/97
      |
      */
-    'route_prefix' => 'music-player',
+    'route_prefix' => env('MUSICPLAYER_PREFIX', 'music-player'),
 
     /*
      |--------------------------------------------------------------------------

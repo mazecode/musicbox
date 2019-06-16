@@ -1,0 +1,44 @@
+{
+    "name": "mazecode/vuejs-generator",
+    "description": "VueJS file generator",
+    "keywords": [
+        "vue",
+        "js",
+        "generator"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mazecode",
+            "email": "diego.feliud@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Mazecode\\VueGenerator\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mazecode\\MusicPlayer\\Providers\\MusicPlayerServiceProvider"
+            ],
+            "aliases": {
+                "MusicPlayer": "Mazecode\\MusicPlayer\\Facades\\Facade"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

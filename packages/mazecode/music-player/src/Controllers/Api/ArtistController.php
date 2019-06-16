@@ -30,7 +30,7 @@ class ArtistController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request): Response
@@ -39,7 +39,9 @@ class ArtistController extends BaseController
 
         $validator = Validator::make($input, []);
 
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         $artist = Artist::create($input);
 
@@ -49,12 +51,14 @@ class ArtistController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Artist $artist
+     * @param  Artist  $artist
      * @return Response
      */
     public function show(Artist $artist): Response
     {
-        if (is_null($artist)) return $this->sendError('Artist not found.');
+        if (is_null($artist)) {
+            return $this->sendError('Artist not found.');
+        }
 
         return new ArtistResource($artist);
 
@@ -64,8 +68,8 @@ class ArtistController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Artist $artist
+     * @param  Request  $request
+     * @param  Artist  $artist
      * @return Response
      */
     public function update(Request $request, Artist $artist): Response
@@ -74,7 +78,9 @@ class ArtistController extends BaseController
 
         $validator = Validator::make($input, []);
 
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         $artist->name = $input['name'];
         $artist->detail = $input['detail'];
@@ -86,7 +92,7 @@ class ArtistController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param Artist $artist
+     * @param  Artist  $artist
      * @return Response
      * @throws Exception
      */

@@ -2,6 +2,7 @@
 
 namespace Mazecode\MusicPlayer\Controllers\Api;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Mazecode\MusicPlayer\Album;
@@ -26,7 +27,7 @@ class AlbumController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request): Response
@@ -35,7 +36,9 @@ class AlbumController extends BaseController
 
         $validator = Validator::make($input, []);
 
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         $album = Album::create($input);
 
@@ -45,12 +48,14 @@ class AlbumController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Album $album
+     * @param  Album  $album
      * @return Response
      */
     public function show(Album $album): Response
     {
-        if (is_null($album)) return $this->sendError('Album not found.');
+        if (is_null($album)) {
+            return $this->sendError('Album not found.');
+        }
 
         return $this->sendResponse($album->toArray(), 'Album retrieved successfully.');
     }
@@ -58,8 +63,8 @@ class AlbumController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Album $album
+     * @param  Request  $request
+     * @param  Album  $album
      * @return Response
      */
     public function update(Request $request, Album $album): Response
@@ -68,7 +73,9 @@ class AlbumController extends BaseController
 
         $validator = Validator::make($input, []);
 
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         $album->name = $input['name'];
         $album->detail = $input['detail'];
@@ -80,9 +87,9 @@ class AlbumController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param Album $album
+     * @param  Album  $album
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Album $album): Response
     {

@@ -15,7 +15,7 @@ class ArtistResource extends JsonResource
     public $preserveKeys = false;
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)

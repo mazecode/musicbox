@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateGenresTable extends Migration
+class CreateTracksTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,13 +14,16 @@ class CreateGenresTable extends Migration
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
+        Schema::create('tracks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->
+            $table->string('duration', 20);
+            $table->dateTime('published');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -28,6 +32,7 @@ class CreateGenresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genres');
+        Schema::drop('songs');
     }
+
 }

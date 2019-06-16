@@ -2,6 +2,7 @@
 
 namespace Mazecode\MusicPlayer\Controllers\Api;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Mazecode\MusicPlayer\Controllers\BaseController;
@@ -26,7 +27,7 @@ class TrackController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request): Response
@@ -35,7 +36,9 @@ class TrackController extends BaseController
 
         $validator = Validator::make($input, []);
 
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         $track = Track::create($input);
 
@@ -45,12 +48,14 @@ class TrackController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param Track $track
+     * @param  Track  $track
      * @return Response
      */
     public function show(Track $track): Response
     {
-        if (is_null($track)) return $this->sendError('Track not found.');
+        if (is_null($track)) {
+            return $this->sendError('Track not found.');
+        }
 
         return $this->sendResponse($track->toArray(), 'Track retrieved successfully.');
     }
@@ -58,8 +63,8 @@ class TrackController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Track $track
+     * @param  Request  $request
+     * @param  Track  $track
      * @return Response
      */
     public function update(Request $request, Track $track): Response
@@ -68,7 +73,9 @@ class TrackController extends BaseController
 
         $validator = Validator::make($input, []);
 
-        if ($validator->fails()) return $this->sendError('Validation Error.', $validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
 
         $track->name = $input['name'];
         $track->detail = $input['detail'];
@@ -80,9 +87,9 @@ class TrackController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param Track $track
+     * @param  Track  $track
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Track $track): Response
     {

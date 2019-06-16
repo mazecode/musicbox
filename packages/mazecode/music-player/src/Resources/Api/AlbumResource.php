@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class AlbumResource extends JsonResource
 {
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray(Request $request)
@@ -16,13 +16,13 @@ class AlbumResource extends JsonResource
         return parent::toArray($request);
 
         return [
-            'type'          => 'articles',
-            'id'            => (string)$this->id,
-            'attributes'    => [
+            'type' => 'articles',
+            'id' => (string) $this->id,
+            'attributes' => [
                 'title' => $this->title,
             ],
             // 'relationships' => new ArticlesRelationshipResource($this),
-            'links'         => [
+            'links' => [
                 'self' => route('albums.show', ['article' => $this->id]),
             ],
         ];
@@ -30,13 +30,13 @@ class AlbumResource extends JsonResource
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     public function with(Request $request)
     {
         return [
-            'links'    => [
+            'links' => [
                 'self' => route('albums.index'),
             ],
         ];

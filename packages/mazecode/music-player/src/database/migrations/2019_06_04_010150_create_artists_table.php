@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateArtistTable extends Migration
+class CreateArtistsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -15,9 +16,14 @@ class CreateArtistTable extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name', 200);
+            $table->integer('music_band')->nullable();
+            $table->json('influences')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -26,6 +32,7 @@ class CreateArtistTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artists');
+        Schema::drop('artists');
     }
+
 }

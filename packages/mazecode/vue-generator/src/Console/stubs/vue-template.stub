@@ -1,0 +1,28 @@
+<template>
+  <div class="{{componentName}}">
+    <!-- Your Form component's template -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: "{{componentName}}",
+  props: {},
+  data: () => {
+    return {
+      //
+    };
+  },
+  components: {},
+  methods: {},
+  mounted() {
+    console.log("Component {{componentName}} mounted.");
+  }
+};
+</script>
+
+<style scoped>
+    .{{componentName}} {
+        //
+    }
+</style>

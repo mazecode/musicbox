@@ -168,7 +168,11 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Way\Generators\GeneratorsServiceProvider::class,
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
+
         Mazecode\MusicPlayer\Providers\MusicPlayerServiceProvider::class,
+        Mazecode\VueGenerator\Providers\VueGeneratorServiceProvider::class,
 
         /*
          * Application Service Providers...

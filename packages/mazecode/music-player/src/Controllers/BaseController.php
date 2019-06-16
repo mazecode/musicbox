@@ -3,6 +3,7 @@
 namespace Mazecode\MusicPlayer\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class BaseController extends Controller
 {
@@ -10,15 +11,15 @@ class BaseController extends Controller
         'data' => null,
         'error' => false,
         'messages' => [],
-        'paginat'
+        'paginat',
     ];
 
     /**
      * success response method.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function sendResponse(array $data , $message)
+    public function sendResponse(array $data, $message)
     {
         $response = [
             'data' => $data,
@@ -33,7 +34,7 @@ class BaseController extends Controller
     /**
      * return error response.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function sendError($error, $errorMessages = [], $code = 404)
     {
@@ -42,7 +43,9 @@ class BaseController extends Controller
             'message' => $error,
         ];
 
-        if (!empty($errorMessages)) $response['data'] = $errorMessages;
+        if (!empty($errorMessages)) {
+            $response['data'] = $errorMessages;
+        }
 
         return response()->json($response, $code);
     }
