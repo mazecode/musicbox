@@ -1,8 +1,9 @@
 <?php
 
-namespace Mazecode\MusicPlayer\Providers;
+namespace Mazecode\MusicPlayer;
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Mazecode\MusicPlayer\Console\Commands\MusicPlayerCommand;
@@ -10,6 +11,13 @@ use Mazecode\MusicPlayer\MusicPlayer;
 
 class MusicPlayerServiceProvider extends ServiceProvider
 {
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
     /**
      * Register the service provider.
@@ -23,6 +31,7 @@ class MusicPlayerServiceProvider extends ServiceProvider
 
     private function registerAllResources(): void
     {
+
         $this->registerFacade();
         $this->registerConfiguration();
         $this->registerCommand();
@@ -137,13 +146,18 @@ class MusicPlayerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $config = $this->app['config']->get('musicplayer');
 
-        // Enabled
-        if (is_bool($config['enabled']) && !$config['enabled']) {
-            return;
-        }
+//        $config = $this->app['config']->get('musicplayer');
+//
+//        // Enabled
+//        if (is_bool($config['enabled']) && !$config['enabled']) {
+//            return;
+//        }
 
+        Schema::defaultStringLength(191);
+
+        $this->registerMigrations();
+        $this->registerRoutes();
     }
 
     /**

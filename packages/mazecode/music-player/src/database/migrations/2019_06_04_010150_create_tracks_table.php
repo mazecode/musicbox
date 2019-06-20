@@ -32,7 +32,7 @@ class CreateTracksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('songs');
+        Schema::drop('tracks');
     }
 
 }

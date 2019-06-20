@@ -1,5 +1,5 @@
 <?php
 
-Route::apiResource('artist', 'ArtistController');
-Route::apiResource('album', 'AlbumController');
-Route::apiResource('song', 'SongController');
+Route::apiResource('artists', ArtistController::class);
+Route::apiResource('albums', AlbumController::class);
+Route::apiResource('tracks', TrackController::class);

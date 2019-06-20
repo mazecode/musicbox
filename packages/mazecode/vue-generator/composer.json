@@ -31,11 +31,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Mazecode\\MusicPlayer\\Providers\\MusicPlayerServiceProvider"
-            ],
-            "aliases": {
-                "MusicPlayer": "Mazecode\\MusicPlayer\\Facades\\Facade"
-            }
+                "Mazecode\\VueGenerator\\VueGeneratorServiceProvider"
+            ]
         }
     },
     "config": {

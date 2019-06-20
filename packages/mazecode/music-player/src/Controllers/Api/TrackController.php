@@ -30,19 +30,19 @@ class TrackController extends BaseController
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store()
     {
-        $input = $request->all();
+//         $input = $request->all();
+//
+//        $validator = Validator::make($input, []);
+//
+//        if ($validator->fails()) {
+//            return $this->sendError('Validation Error.', $validator->errors(), 500);
+//        }
+//
+//        $track = Track::create($input);
 
-        $validator = Validator::make($input, []);
-
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-
-        $track = Track::create($input);
-
-        return $this->sendResponse($track->toArray(), 'Track created successfully.');
+        return $this->sendResponse($track, 'Track created successfully.');
     }
 
     /**

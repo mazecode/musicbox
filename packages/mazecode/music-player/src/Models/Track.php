@@ -10,6 +10,8 @@ class Track extends BaseModel
 {
     protected $table = 'tracks';
 
+    protected $guarded = [];
+
     public function albums()
     {
         return $this->belongsToMany(Album::class, 'album_tracks', 'album_id', 'track_id');

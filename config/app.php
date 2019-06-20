@@ -172,8 +172,8 @@ return [
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
-        Mazecode\MusicPlayer\Providers\MusicPlayerServiceProvider::class,
-        Mazecode\VueGenerator\Providers\VueGeneratorServiceProvider::class,
+        Mazecode\MusicPlayer\MusicPlayerServiceProvider::class,
+        Mazecode\VueGenerator\VueGeneratorServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mazecode\VueGenerator\Providers;
+namespace Mazecode\VueGenerator;
 
 use Illuminate\Support\ServiceProvider;
 use Mazecode\VueGenerator\Console\Commands\VueGeneratorCommand;

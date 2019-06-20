@@ -25,7 +25,7 @@ return [
      | from trying to overcome bugs like this: http://trac.nginx.org/nginx/ticket/97
      |
      */
-    'route_prefix' => env('MUSICPLAYER_PREFIX', 'music-player'),
+    'route_prefix' => env('MUSICPLAYER_PREFIX', 'player'),
 
     /*
      |--------------------------------------------------------------------------

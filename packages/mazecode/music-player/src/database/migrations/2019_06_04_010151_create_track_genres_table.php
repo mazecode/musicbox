@@ -35,7 +35,7 @@ class CreateTrackGenresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('song_genres');
+        Schema::drop('track_genres');
     }
 
 }
