@@ -14,7 +14,6 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "mazecode/music-player": "dev-master",
-        "tymon/jwt-auth": "2.0.x-dev",
         "vinkla/hashids": "^6.0"
     },
     "require-dev": {

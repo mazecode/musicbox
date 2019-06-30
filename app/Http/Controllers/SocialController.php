@@ -6,6 +6,7 @@ use App\SocialLogin;
 use App\User;
 use Auth;
 use Socialite;
+use Hash;
 
 /**
  * Class SocialController
@@ -44,7 +45,7 @@ class SocialController extends Controller
             $user->username = $socialite->getNickname() ?: explode(' ', $socialite->getName())[0];
             $user->email = $socialite->getEmail();
             $user->avatar = $socialite->getAvatar();
-            $user->password = \Hash::make($socialite->getNickname());
+            $user->password = Hash::make($socialite->getNickname());
             $user->save();
 
             $user->socialLogin()->attach($socialLogin->id, ['social_provider_id' => $socialite->getId()]);
@@ -59,7 +60,7 @@ class SocialController extends Controller
      */
     public function authAndRedirect(User $user)
     {
-        Auth::login($user);
+        auth()->login($user);
 
         return redirect('/home#');
     }
