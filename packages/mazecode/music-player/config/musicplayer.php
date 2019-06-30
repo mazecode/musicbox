@@ -36,4 +36,9 @@ return [
      | To override default domain, specify it as a non-empty value.
      */
     'route_domain' => null,
+
+    /**
+     *
+     */
+    'route_auth' => env('MUSICPLAYER_ROUTE_AUTH', false),
 ];

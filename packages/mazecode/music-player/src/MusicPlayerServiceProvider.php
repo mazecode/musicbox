@@ -74,19 +74,17 @@ class MusicPlayerServiceProvider extends ServiceProvider
         if (is_bool($config['enabled']) && $config['enabled']) {
             $this->loadApiRouters();
             $this->loadWebRouters();
+
+            return;
         }
 
-        $ignoreRoutes = null;
-
-        if (is_string($config['enabled'])) {
-            $ignoreRoutes = explode(',', $config['enabled']);
-        }
+        $ignoreRoutes = (is_string($config['enabled'])) ? explode(',', $config['enabled']) : $config['enabled'];
 
         if (is_array($ignoreRoutes)) {
             foreach ($ignoreRoutes as $k => $v) {
-                if (Str::contains($v, 'api') && !Str::contains($v, 'api/*')) {
+                if (str_contains($v, 'api') && !str_contains($v, 'api/*')) {
                     $this->loadApiRouters();
-                } elseif (Str::contains($v, 'web') && !Str::contains($v, 'web/*')) {
+                } elseif (str_contains($v, 'web') && !str_contains($v, 'web/*')) {
                     $this->loadWebRouters();
                 }
             }
@@ -95,38 +93,24 @@ class MusicPlayerServiceProvider extends ServiceProvider
 
     private function loadApiRouters()
     {
-        $routeConfig = [
-            'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
-            'domain' => $this->app['config']->get('musicplayer.route_domain'),
-            'namespace' => 'Mazecode\MusicPlayer\Controllers\Api',
-            'middleware' => ['api'],
-        ];
-
-        Route::prefix('api')->group(function () use ($routeConfig) {
-            Route::group($routeConfig, function () {
-                $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        Route::prefix('api')->middleware('api')->group(function () {
+            Route::group($this->getRouteConfig('api'), function () {
+                Route::get('/', 'ApiController@index');
+                Route::middleware('auth:api')->group(function () { $this->loadRoutesFrom(__DIR__ . '/routes/api.php'); });
             });
         });
     }
 
     private function loadWebRouters()
     {
-        $routeConfig = [
-            'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
-            'domain' => $this->app['config']->get('musicplayer.route_domain'),
-            'namespace' => 'Mazecode\MusicPlayer\Controllers',
-        ];
-
-        Route::group($routeConfig, function () {
-            $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-        });
-
+        Route::group($this->getRouteConfig(), function(){$this->loadRoutesFrom(__DIR__.'/routes/web.php'); });
     }
 
     private function registerMigrations(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         $this->publishes([
+
             __DIR__.'/database/migrations/' => database_path('migrations'),
         ], 'musicplayer-migrations');
     }
@@ -168,5 +152,30 @@ class MusicPlayerServiceProvider extends ServiceProvider
     public function provides()
     {
         return [MusicPlayerCommand::class, MusicPlayer::class];
+    }
+
+    public function getRouteConfig($type = 'web') {
+        $config = [];
+
+        switch ($type) {
+            case 'web':
+                $config = [
+                    'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
+                    'domain' => $this->app['config']->get('musicplayer.route_domain'),
+                    'namespace' => 'Mazecode\MusicPlayer\Controllers',
+                ];
+                break;
+            case 'api':
+                $config = [
+                    'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
+                    'domain' => $this->app['config']->get('musicplayer.route_domain'),
+                    'namespace' => 'Mazecode\MusicPlayer\Controllers\Api',
+                ];
+                break;
+            default:
+                break;
+        }
+
+        return $config;
     }
 }
