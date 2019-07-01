@@ -1,6 +1,6 @@
 <?php
 
-namespace Mazecode\MusicPlayer\Resources\Api;
+namespace Mazecode\MusicPlayer\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

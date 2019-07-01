@@ -1,8 +1,6 @@
 <?php
 
-namespace Mazecode\MusicPlayer\Controllers\Api;
-
-use Mazecode\MusicPlayer\Controllers\BaseController;
+namespace Mazecode\MusicPlayer\Controllers;
 
 /**
  * Class AlbumController

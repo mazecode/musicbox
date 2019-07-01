@@ -1,12 +1,11 @@
 <?php
 
-namespace Mazecode\MusicPlayer\Controllers\Api;
+namespace Mazecode\MusicPlayer\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Mazecode\MusicPlayer\Album;
-use Mazecode\MusicPlayer\Controllers\BaseController;
+use Mazecode\MusicPlayer\Models\Album;
 
 /**
  * Class AlbumController
@@ -17,9 +16,8 @@ class AlbumController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return Response
      */
-    public function index(): Response
+    public function index()
     {
         return $this->sendResponse(Album::all()->toArray(), 'Albums retrieved successfully.');
     }
@@ -28,9 +26,8 @@ class AlbumController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
-     * @return Response
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $input = $request->all();
 
@@ -49,9 +46,8 @@ class AlbumController extends BaseController
      * Display the specified resource.
      *
      * @param  Album  $album
-     * @return Response
      */
-    public function show(Album $album): Response
+    public function show(Album $album)
     {
         if (is_null($album)) {
             return $this->sendError('Album not found.');
@@ -65,9 +61,8 @@ class AlbumController extends BaseController
      *
      * @param  Request  $request
      * @param  Album  $album
-     * @return Response
      */
-    public function update(Request $request, Album $album): Response
+    public function update(Request $request, Album $album)
     {
         $input = $request->all();
 
@@ -88,10 +83,9 @@ class AlbumController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param  Album  $album
-     * @return Response
      * @throws Exception
      */
-    public function destroy(Album $album): Response
+    public function destroy(Album $album)
     {
         $album->delete();
 

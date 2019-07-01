@@ -1,29 +1,32 @@
 <?php
 
-namespace Mazecode\MusicPlayer\Resources\Api;
+namespace Mazecode\MusicPlayer\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\Resource;
 
-class AlbumResource extends JsonResource
+class AlbumResource extends Resource
 {
     /**
      * @param  Request  $request
      * @return array
      */
-    public function toArray(Request $request)
+    public function toArray($request)
     {
-        return parent::toArray($request);
+        // return parent::toArray($request);
 
         return [
-            'type' => 'articles',
+            'type' => 'albums',
             'id' => (string) $this->id,
             'attributes' => [
-                'title' => $this->title,
+                'name' => $this->name,
+                'published' => $this->published,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
             ],
-            // 'relationships' => new ArticlesRelationshipResource($this),
             'links' => [
-                'self' => route('albums.show', ['article' => $this->id]),
+                // 'self' => route('albums.show', ['id' => $this->id]),
             ],
         ];
 

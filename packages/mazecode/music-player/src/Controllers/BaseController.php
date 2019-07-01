@@ -2,16 +2,21 @@
 
 namespace Mazecode\MusicPlayer\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class BaseController extends Controller
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     private $response = [
         'data' => null,
         'error' => false,
         'messages' => [],
-        'paginat',
+        'pagination',
     ];
 
     /**

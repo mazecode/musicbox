@@ -1,13 +1,12 @@
 <?php
 
-namespace Mazecode\MusicPlayer\Controllers\Api;
+namespace Mazecode\MusicPlayer\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Mazecode\MusicPlayer\Artist;
-use Mazecode\MusicPlayer\Controllers\BaseController;
-use Mazecode\MusicPlayer\Resources\Api\ArtistResource;
+use Mazecode\MusicPlayer\Resources\ArtistResource;
 
 /**
  * Class ArtistController

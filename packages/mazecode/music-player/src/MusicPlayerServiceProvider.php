@@ -53,13 +53,11 @@ class MusicPlayerServiceProvider extends ServiceProvider
 
     private function registerConfiguration(): void
     {
-        $configPath = __DIR__.'/../config/musicplayer.php';
+        $configPath = __DIR__ . '/../config/musicplayer.php';
         $this->mergeConfigFrom($configPath, 'musicplayer');
 
         // Configuration
-        $this->publishes([
-            __DIR__.'/../config/musicplayer.php' => config_path('musicplayer.php'),
-        ], 'musicplayer-config');
+        $this->publishes([__DIR__ . '/../config/musicplayer.php' => config_path('musicplayer.php')], 'musicplayer-config');
     }
 
     private function registerCommand(): void
@@ -94,33 +92,32 @@ class MusicPlayerServiceProvider extends ServiceProvider
     private function loadApiRouters()
     {
         Route::prefix('api')->middleware('api')->group(function () {
-            Route::group($this->getRouteConfig('api'), function () {
+            Route::group($this->getRouteConfig(), function () {
                 Route::get('/', 'ApiController@index');
-                Route::middleware('auth:api')->group(function () { $this->loadRoutesFrom(__DIR__ . '/routes/api.php'); });
+                Route::middleware('auth:api')->group(function () {
+                    $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
+                });
             });
         });
     }
 
     private function loadWebRouters()
     {
-        Route::group($this->getRouteConfig(), function(){$this->loadRoutesFrom(__DIR__.'/routes/web.php'); });
+        Route::group($this->getRouteConfig(), function () {
+            $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        });
     }
 
-    private function registerMigrations(): void
+    private function registerMigrations()
     {
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
-        $this->publishes([
-
-            __DIR__.'/database/migrations/' => database_path('migrations'),
-        ], 'musicplayer-migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->publishes([__DIR__ . '/database/migrations/' => database_path('migrations')], 'musicplayer-migrations');
     }
 
     private function registerViews(): void
     {
-        $this->loadViewsFrom(__DIR__.'/Views', 'musicplayer');
-        $this->publishes([
-            __DIR__.'/Views' => resource_path('views/vendor/mazecode/musicplayer'),
-        ], 'musicplayer-views');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'musicplayer');
+        $this->publishes([__DIR__ . '/Views' => resource_path('views/vendor/mazecode/musicplayer')], 'musicplayer-views');
     }
 
     /**
@@ -130,18 +127,18 @@ class MusicPlayerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-//        $config = $this->app['config']->get('musicplayer');
-//
-//        // Enabled
-//        if (is_bool($config['enabled']) && !$config['enabled']) {
-//            return;
-//        }
-
         Schema::defaultStringLength(191);
+
+        $config = $this->app['config']->get('musicplayer');
+
+        // Enabled
+        if (is_bool($config['enabled']) && !$config['enabled']) {
+            return;
+        }
 
         $this->registerMigrations();
         $this->registerRoutes();
+        $this->app->register(SeedServiceProvider::class);
     }
 
     /**
@@ -154,28 +151,17 @@ class MusicPlayerServiceProvider extends ServiceProvider
         return [MusicPlayerCommand::class, MusicPlayer::class];
     }
 
-    public function getRouteConfig($type = 'web') {
-        $config = [];
-
-        switch ($type) {
-            case 'web':
-                $config = [
-                    'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
-                    'domain' => $this->app['config']->get('musicplayer.route_domain'),
-                    'namespace' => 'Mazecode\MusicPlayer\Controllers',
-                ];
-                break;
-            case 'api':
-                $config = [
-                    'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
-                    'domain' => $this->app['config']->get('musicplayer.route_domain'),
-                    'namespace' => 'Mazecode\MusicPlayer\Controllers\Api',
-                ];
-                break;
-            default:
-                break;
-        }
-
-        return $config;
+    /**
+     * Return min route config
+     *
+     * @return void
+     */
+    public function getRouteConfig()
+    {
+        return [
+            'prefix' => $this->app['config']->get('musicplayer.route_prefix'),
+            'domain' => $this->app['config']->get('musicplayer.route_domain'),
+            'namespace' => 'Mazecode\MusicPlayer\Controllers',
+        ];
     }
 }
