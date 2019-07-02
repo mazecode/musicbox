@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\SocialLogin;
 
 class SocialLoginTableSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class SocialLoginTableSeeder extends Seeder
         ];
 
         foreach ($rrss as $rs) {
-            App\SocialLogin::create([
+            SocialLogin::create([
                     'name' => $rs,
                     'driver' => strtolower($rs),
                     'icon' => $icon[strtolower($rs)]

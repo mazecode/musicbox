@@ -17,10 +17,12 @@ class CreateArtistsTable extends Migration
         Schema::create('artists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 200);
-            $table->integer('music_band')->nullable();
+            $table->unsignedBigInteger('band')->nullable();
             $table->json('influences')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('band')->references('id')->on('artists');
         });
     }
 

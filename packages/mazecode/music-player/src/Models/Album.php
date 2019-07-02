@@ -2,7 +2,6 @@
 
 namespace Mazecode\MusicPlayer\Models;
 
-
 /**
  * Class Album
  * @package Mazecode\MusicPlayer

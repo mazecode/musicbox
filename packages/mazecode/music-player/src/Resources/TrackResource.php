@@ -5,7 +5,7 @@ namespace Mazecode\MusicPlayer\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ArtistResource extends JsonResource
+class TrackResource extends JsonResource
 {
     /**
      * Indicates if the resource's collection keys should be preserved.
@@ -21,17 +21,15 @@ class ArtistResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'artist',
+            'type' => 'track',
             'id' => (string) $this->id,
             'attributes' => [
                 'name' => $this->name,
-                'band' => new ArtistResource($this->bands),
-                'influences' => $this->influences,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ],
             'links' => [
-                'self' => route('artists.show', ['id' => $this->id]),
+                'self' => route('tracks.show', ['id' => $this->id]),
             ],
 
         ];

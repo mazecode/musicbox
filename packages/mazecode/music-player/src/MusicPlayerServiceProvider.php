@@ -94,9 +94,10 @@ class MusicPlayerServiceProvider extends ServiceProvider
         Route::prefix('api')->middleware('api')->group(function () {
             Route::group($this->getRouteConfig(), function () {
                 Route::get('/', 'ApiController@index');
-                Route::middleware('auth:api')->group(function () {
+
+                // Route::middleware('auth:api')->group(function () {
                     $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
-                });
+                // });
             });
         });
     }

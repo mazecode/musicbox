@@ -26,7 +26,7 @@ class AlbumResource extends Resource
                 'updated_at' => $this->updated_at,
             ],
             'links' => [
-                // 'self' => route('albums.show', ['id' => $this->id]),
+                'self' => route('albums.show', ['id' => $this->id]),
             ],
         ];
 

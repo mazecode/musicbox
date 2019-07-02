@@ -2,7 +2,6 @@
 
 namespace Mazecode\MusicPlayer\Models;
 
-
 /**
  * Class Artist
  * @package Mazecode\MusicPlayer
@@ -10,6 +9,8 @@ namespace Mazecode\MusicPlayer\Models;
 class Artist extends BaseModel
 {
     protected $table = 'artists';
+
+    protected $guard = [];
 
     public function albums()
     {
@@ -24,5 +25,15 @@ class Artist extends BaseModel
     public function influences()
     {
         return $this->belongsToMany(Artist::class, 'influences', 'influence_id', 'artist_id');
+    }
+
+    public function bands()
+    {
+        return $this->belongsTo(Artist::class, 'band', 'id');
+    }
+
+    public function children()
+    {
+        return $this->hasOne(Artist::class, 'id', 'band');
     }
 }

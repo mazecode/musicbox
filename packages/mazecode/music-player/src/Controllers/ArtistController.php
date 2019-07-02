@@ -5,8 +5,9 @@ namespace Mazecode\MusicPlayer\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Mazecode\MusicPlayer\Artist;
 use Mazecode\MusicPlayer\Resources\ArtistResource;
+use Mazecode\MusicPlayer\Models\Artist;
+use Mazecode\MusicPlayer\Resources\ArtistCollection;
 
 /**
  * Class ArtistController
@@ -21,9 +22,7 @@ class ArtistController extends BaseController
      */
     public function index()
     {
-        return ArtistResource::collection(Artist::all()->keyBy->id);
-
-        // return $this->sendResponse(Artist::all()->toArray(), 'Artists retrieved successfully.');
+        return new ArtistCollection(Artist::paginate());
     }
 
     /**
@@ -32,7 +31,7 @@ class ArtistController extends BaseController
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $input = $request->all();
 
@@ -44,7 +43,7 @@ class ArtistController extends BaseController
 
         $artist = Artist::create($input);
 
-        return $this->sendResponse($artist->toArray(), 'Song created successfully.');
+        return new ArtistResource($artist);
     }
 
     /**
@@ -53,15 +52,9 @@ class ArtistController extends BaseController
      * @param  Artist  $artist
      * @return Response
      */
-    public function show(Artist $artist): Response
+    public function show(Artist $artist)
     {
-        if (is_null($artist)) {
-            return $this->sendError('Artist not found.');
-        }
-
         return new ArtistResource($artist);
-
-        // return $this->sendResponse($artist->toArray(), 'Artist retrieved successfully.');
     }
 
     /**
@@ -71,7 +64,7 @@ class ArtistController extends BaseController
      * @param  Artist  $artist
      * @return Response
      */
-    public function update(Request $request, Artist $artist): Response
+    public function update(Request $request, Artist $artist)
     {
         $input = $request->all();
 
@@ -95,7 +88,7 @@ class ArtistController extends BaseController
      * @return Response
      * @throws Exception
      */
-    public function destroy(Artist $artist): Response
+    public function destroy(Artist $artist)
     {
         $artist->delete();
 

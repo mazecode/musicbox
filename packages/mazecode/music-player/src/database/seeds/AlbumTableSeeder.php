@@ -23,7 +23,5 @@ class AlbumTableSeeder extends Seeder
         Album::create([
             'name' => 'Album de Prueba 2',
         ]);
-
-        $this->command->info('Album\'s dummy data ready');
     }
 }

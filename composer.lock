@@ -781,16 +781,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.26",
+            "version": "v5.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1d8ec9afdedc79314c18715056b8143d7e1fac31"
+                "reference": "f1dccffb96f614895393e27e4667105a05407af5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1d8ec9afdedc79314c18715056b8143d7e1fac31",
-                "reference": "1d8ec9afdedc79314c18715056b8143d7e1fac31",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f1dccffb96f614895393e27e4667105a05407af5",
+                "reference": "f1dccffb96f614895393e27e4667105a05407af5",
                 "shasum": ""
             },
             "require": {
@@ -924,7 +924,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-06-25T16:20:51+00:00"
+            "time": "2019-07-02T13:43:47+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -1202,11 +1202,11 @@
         },
         {
             "name": "mazecode/music-player",
-            "version": "dev-master",
+            "version": "9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "./packages/mazecode/music-player",
-                "reference": "356a8cbc24790656386fc293e40b885779582c56",
+                "reference": "d7b8c415e7be6a30ade46c122180d248e8495288",
                 "shasum": null
             },
             "require": {
@@ -1228,11 +1228,15 @@
                 }
             },
             "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
                 "psr-4": {
                     "Mazecode\\MusicPlayer\\": "src/"
                 },
-                "files": [
-                    "src/helpers.php"
+                "classmap": [
+                    "src/database/seeds",
+                    "src/database/factories"
                 ]
             },
             "autoload-dev": {
@@ -4229,7 +4233,7 @@
         },
         {
             "name": "mazecode/vuejs-generator",
-            "version": "dev-master",
+            "version": "9999999-dev",
             "dist": {
                 "type": "path",
                 "url": "./packages/mazecode/vue-generator",

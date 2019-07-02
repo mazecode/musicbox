@@ -2,7 +2,6 @@
 
 namespace Mazecode\MusicPlayer\Models;
 
-
 /**
  * Class Track
  * @package Mazecode\MusicPlayer

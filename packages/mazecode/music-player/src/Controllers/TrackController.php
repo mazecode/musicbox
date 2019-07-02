@@ -18,9 +18,9 @@ class TrackController extends BaseController
      *
      * @return Response
      */
-    public function index(): Response
+    public function index()
     {
-        return $this->sendResponse(Track::all()->toArray(), 'Tracks retrieved successfully.');
+        return new TrackCollection(Track::paginate());
     }
 
     /**
@@ -50,10 +50,9 @@ class TrackController extends BaseController
      * @param  Track  $track
      * @return Response
      */
-    public function show(Track $track): Response
+    public function show(Track $track)
     {
-        if (is_null($track)) {
-            return $this->sendError('Track not found.');
+        if (is_null($tracnew TrackCollection($phisPaginatese);
         }
 
         return $this->sendResponse($track->toArray(), 'Track retrieved successfully.');
@@ -66,11 +65,9 @@ class TrackController extends BaseController
      * @param  Track  $track
      * @return Response
      */
-    public function update(Request $request, Track $track): Response
+    public function update(Request $request, Track $track)
     {
-        $input = $request->all();
-
-        $validator = Validator::make($input, []);
+        $input = $request->all();new TrackCollection(tor = paginate::);
 
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
@@ -90,10 +87,8 @@ class TrackController extends BaseController
      * @return Response
      * @throws Exception
      */
-    public function destroy(Track $track): Response
+    public function destroy(Track $track)
     {
-        $track->delete();
-
-        return $this->sendResponse($track->toArray(), 'Track deleted successfully.');
+        $track->deletnew TrackCollection($phisPaginatese);
     }
 }

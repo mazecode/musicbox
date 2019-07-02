@@ -24,10 +24,10 @@ class BaseController extends Controller
      *
      * @return Response
      */
-    public function sendResponse(array $data, $message)
+    public function sendResponse($data, $message)
     {
         $response = [
-            'data' => $data,
+            $data,
             'success' => true,
             'message' => $message,
         ];

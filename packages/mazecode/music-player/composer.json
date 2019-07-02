@@ -23,14 +23,19 @@
         "orchestra/testbench": "^3.8"
     },
     "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
         "psr-4": {
             "Mazecode\\MusicPlayer\\": "src/"
         },
-        "files": [
-            "src/helpers.php"
+        "classmap": [
+            "src/database/seeds",
+            "src/database/factories"
         ]
     },
     "autoload-dev": {
+
         "psr-4": {
             "Mazecode\\MusicPlayer\\Tests\\": "tests/"
         }

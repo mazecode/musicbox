@@ -2,6 +2,7 @@
 
 use App\SocialLogin;
 use Illuminate\Database\Seeder;
+use App\User;
 
 class SocialUsersTableSeeder extends Seeder
 {
@@ -18,10 +19,8 @@ class SocialUsersTableSeeder extends Seeder
 //        $this->command->info("Creating {$count} social logins.");
 
         // Create the Genre
-        $sls = App\SocialLogin::all();
-        $users = App\User::all();
-
-
+        $sls = SocialLogin::all();
+        $users = User::all();
 
         $this->command->info('Users - Social Logins Created!');
     }
