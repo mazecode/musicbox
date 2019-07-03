@@ -8,10 +8,6 @@ namespace Mazecode\MusicPlayer\Models;
  */
 class Artist extends BaseModel
 {
-    protected $table = 'artists';
-
-    protected $guard = [];
-
     public function albums()
     {
         return $this->belongsToMany(Album::class, 'artist_albums', 'album_id', 'artist_id');
@@ -29,11 +25,11 @@ class Artist extends BaseModel
 
     public function bands()
     {
-        return $this->belongsTo(Artist::class, 'band', 'id');
+        return $this->hasOne(Artist::class, 'id', 'band');
     }
 
-    public function children()
+    public function members()
     {
-        return $this->hasOne(Artist::class, 'id', 'band');
+        return $this->hasMany(Artist::class, 'band', 'id');
     }
 }
