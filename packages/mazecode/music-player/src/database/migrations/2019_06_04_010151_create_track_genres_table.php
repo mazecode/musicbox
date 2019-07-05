@@ -15,7 +15,7 @@ class CreateTrackGenresTable extends Migration
     public function up()
     {
         Schema::create('track_genres', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            // $table->bigIncrements('id');
             $table->unsignedBigInteger('track_id');
             $table->unsignedBigInteger('genre_id');
             $table->timestamps();

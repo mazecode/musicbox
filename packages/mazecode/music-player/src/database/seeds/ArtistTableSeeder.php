@@ -15,8 +15,9 @@ class ArtistTableSeeder extends Seeder
     public function run()
     {
         Artist::truncate();
+        Band::truncate();
 
-        $wutang = Artist::create([
+        $wutang = Band::create([
             'name' => 'Wu-Tang Clan'
         ]);
 
@@ -25,7 +26,7 @@ class ArtistTableSeeder extends Seeder
             'band' => $wutang->id
         ]);
 
-        $nwa = Artist::create([
+        $nwa = Band::create([
             'name' => 'NWA',
         ]);
 

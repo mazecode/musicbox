@@ -15,7 +15,7 @@ class CreateInfluencesTable extends Migration
     public function up()
     {
         Schema::create('influences', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            // $table->bigIncrements('id');
             $table->unsignedBigInteger('artist_id');
             $table->unsignedBigInteger('influence_id');
             $table->timestamps();

@@ -15,7 +15,7 @@ class CreateAlbumTracksTable extends Migration
     public function up()
     {
         Schema::create('album_tracks', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            // $table->bigIncrements('id');
             $table->unsignedBigInteger('album_id');
             $table->unsignedBigInteger('track_id');
             $table->timestamps();
@@ -37,5 +37,4 @@ class CreateAlbumTracksTable extends Migration
     {
         Schema::drop('album_tracks');
     }
-
 }

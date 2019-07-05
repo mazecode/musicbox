@@ -15,7 +15,7 @@ class CreateArtistAlbumsTable extends Migration
     public function up()
     {
         Schema::create('artist_albums', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            // $table->bigIncrements('id');
             $table->unsignedBigInteger('artist_id');
             $table->unsignedBigInteger('album_id');
             $table->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArtistGenresTable extends Migration
+class CreateCollaborationsTable extends Migration
 {
 
     /**
@@ -14,16 +14,18 @@ class CreateArtistGenresTable extends Migration
      */
     public function up()
     {
-        Schema::create('artist_genres', function (Blueprint $table) {
+        Schema::create('collaborations', function (Blueprint $table) {
             // $table->bigIncrements('id');
             $table->unsignedBigInteger('artist_id');
-            $table->unsignedBigInteger('genre_id');
+            $table->unsignedBigInteger('feat_id');
+            $table->unsignedBigInteger('track_id');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
-            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
-            $table->index(['artist_id', 'genre_id']);
+            $table->foreign('feat_id')->references('id')->on('artists')->onDelete('cascade');
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
+            $table->index(['artist_id', 'feat_id', 'track_id']);
         });
     }
 
@@ -35,7 +37,6 @@ class CreateArtistGenresTable extends Migration
      */
     public function down()
     {
-        Schema::drop('artist_genres');
+        Schema::drop('collaborations');
     }
-
 }
