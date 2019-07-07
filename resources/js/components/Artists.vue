@@ -4,7 +4,7 @@
       <div class="col-12">
         <h3 class="display-2">Artists</h3>
         <ul class="list-unstyled">
-          <li v-for="artist in artists">{{ artist.attributes.name }}</li>
+          <li v-for="artist in artists" v-bind="artist.id">{{ artist.attributes.name }}</li>
         </ul>
       </div>
     </div>
