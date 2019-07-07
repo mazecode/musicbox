@@ -4,7 +4,7 @@
       <div class="col-12">
         <h4>Play List</h4>
         <ul>
-          <li v-for="track in tracks">{{ track.name }}</li>
+          <li v-for="(track, index) in playList" v-bind="track.title" :key="track.id">{{ track.title }}</li>
         </ul>
       </div>
     </div>
@@ -21,14 +21,12 @@ export default {
   },
   data() {
     return {
-      playList: Array,
-      tracks: [
-        { name: "Track A" },
-        { name: "Track B" },
-        { name: "Track C" },
-        { name: "Track D" }
-      ],
-      track: null
+      playList: [
+        { id: 1, title: "Track A" },
+        { id: 2, title: "Track B" },
+        { id: 3, title: "Track C" },
+        { id: 4, title: "Track D" }
+      ]
     };
   },
   methods: {

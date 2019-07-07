@@ -11626,17 +11626,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      playList: Array,
-      tracks: [{
-        name: "Track A"
+      playList: [{
+        id: 1,
+        title: "Track A"
       }, {
-        name: "Track B"
+        id: 2,
+        title: "Track B"
       }, {
-        name: "Track C"
+        id: 3,
+        title: "Track C"
       }, {
-        name: "Track D"
-      }],
-      track: null
+        id: 4,
+        title: "Track D"
+      }]
     };
   },
   methods: {
@@ -47993,8 +47995,12 @@ var render = function() {
         _vm._v(" "),
         _c(
           "ul",
-          _vm._l(_vm.tracks, function(track) {
-            return _c("li", [_vm._v(_vm._s(track.name))])
+          _vm._l(_vm.playList, function(track, index) {
+            return _c(
+              "li",
+              _vm._b({ key: track.id }, "li", track.title, false),
+              [_vm._v(_vm._s(track.title))]
+            )
           }),
           0
         )
