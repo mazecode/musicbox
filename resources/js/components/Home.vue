@@ -3,12 +3,8 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="display-3">A Bootstrap 4 Starter Template</h1>
-        <p class="lead">Complete with pre-defined file paths and responsive navigation!</p>
-        <ul class="list-unstyled">
-          <li>Bootstrap 4.3.1</li>
-          <li>jQuery 3.4.1</li>
-        </ul>
+        <h1 class="display-3">MusicBox Player</h1>
+        <p class="lead">Welcome!</p>
       </div>
     </div>
   </div>
@@ -16,13 +12,25 @@
 
 <script>
 export default {
+  mounted() {
+    console.log("Component mounted.");
+  },
+  components: {},
   data() {
     return {
       genres: []
     };
   },
-  mounted() {
-    console.log("Component mounted.");
+  methods: {
+    async getGenres() {
+      try {
+        let response = (await axios.get("/api/player/genres")).data;
+
+        console.log(response)
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 };
 </script>

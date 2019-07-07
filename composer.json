@@ -14,7 +14,8 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "mazecode/music-player": "dev-master",
-        "vinkla/hashids": "^6.0"
+        "vinkla/hashids": "^6.0",
+        "waavi/sanitizer": "~1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

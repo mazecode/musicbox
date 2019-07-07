@@ -1,23 +1,14 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () { return view('welcome'); });
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Auth Routes
+// Auth::routes();
 
 // Socialite Routes
-Route::get('login/{driver}', 'SocialController@login');
-Route::get('login/{driver}/callback', 'SocialController@callback');
+// Route::get('login/{driver}', 'SocialController@login');
+// Route::get('login/{driver}/callback', 'SocialController@callback');
+
+// SPA Routes
+Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');

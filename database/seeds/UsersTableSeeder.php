@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -11,13 +12,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // User::truncate();
+
         // How many genres you need, defaulting to 10
         $count = (int)$this->command->ask('How many users do you need ?', 10);
 
         $this->command->info("Creating {$count} users.");
 
         // Create the Genre
-        $users = factory(App\User::class, $count)->create();
+        $users = factory(User::class, $count)->create();
 
         $this->command->info('Users Created!');
     }

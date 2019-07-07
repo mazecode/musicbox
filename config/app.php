@@ -170,7 +170,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
-
+        Waavi\Sanitizer\Laravel\SanitizerServiceProvider::class,
         Mazecode\MusicPlayer\MusicPlayerServiceProvider::class,
         Mazecode\VueGenerator\VueGeneratorServiceProvider::class,
 
@@ -240,6 +240,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
     ],
 
 ];

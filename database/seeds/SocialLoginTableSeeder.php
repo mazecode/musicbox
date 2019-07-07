@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\SocialLogin;
+use App\Pivots\SocialUser;
+use App\User;
 
 class SocialLoginTableSeeder extends Seeder
 {
@@ -12,6 +14,11 @@ class SocialLoginTableSeeder extends Seeder
      */
     public function run()
     {
+        // Schema::disableForeignKeyConstraints();
+        // SocialUser::truncate();// User::truncate();
+        // SocialLogin::truncate();
+        // Schema::enableForeignKeyConstraints();
+
         $rrss = ['Facebook', 'Google', 'Github', 'LinkedIn', 'Twitter'];
         $icon = [
             'facebook' => 'fab facebook-f',
