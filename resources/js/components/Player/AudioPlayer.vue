@@ -140,6 +140,9 @@ export default {
     this.track.addEventListener("play", () => {
       this.playing = true;
     });
+    this.track.addEventListener("onended", () => {
+      this.next();
+    });
   },
   methods: {
     playPause() {
@@ -149,11 +152,13 @@ export default {
       this.playing = false;
       this.track.currentTime = 0;
     },
-    next: function() {
-      this.$emit("forward", true);
+    async next() {
+      await this.$emit("forward", true);
+      this.playing = await true;
     },
-    previous: function() {
-      this.$emit("backward", true);
+    async previous() {
+      await this.$emit("backward", true);
+      this.playing = await true;
     },
     mute() {
       if (this.muted) {
@@ -201,7 +206,7 @@ export default {
       let hhmmss = new Date(val * 1000).toISOString().substr(11, 8);
 
       return hhmmss.indexOf("00:") === 0 ? hhmmss.substr(3) : hhmmss;
-    }
+    },
   },
   computed: {
     currentTime() {
