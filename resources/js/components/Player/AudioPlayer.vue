@@ -140,8 +140,8 @@ export default {
     this.track.addEventListener("play", () => {
       this.playing = true;
     });
-    this.track.addEventListener("onended", () => {
-      this.next();
+    this.track.addEventListener("onended", async () => {
+      await this.next();
     });
   },
   methods: {
