@@ -15746,6 +15746,10 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": null,
       required: true
+    },
+    cover: {
+      type: String,
+      "default": null
     }
   },
   data: function data() {
@@ -16023,6 +16027,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -16032,9 +16037,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       tracks: [{
         title: "That's what I want",
+        cover: "https://placeimg.com/50/50/people",
         url: "http://freemusicdownloads.world/wp-content/uploads/2017/05/Bruno-Mars-That\u2019s-What-I-Like-Official-Video-1.mp3"
       }, {
         title: "Panda",
+        cover: "https://placeimg.com/50/50/people",
         url: "http://freemusicdownloads.world/wp-content/uploads/2017/05/Desiigner-Panda-Audio.mp3"
       }],
       track: undefined,
@@ -52303,11 +52310,11 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row py2" }, [
-      _c("div", { staticClass: "col-8" }, [
+      _c("div", { staticClass: "col-12 col-md-8" }, [
         _c("div", { staticClass: "media" }, [
           _c("img", {
             staticClass: "mr-3",
-            attrs: { src: "https://placeimg.com/50/50/people", alt: _vm.title }
+            attrs: { src: _vm.cover, alt: _vm.title }
           }),
           _vm._v(" "),
           _c("div", { staticClass: "media-body text-white" }, [
@@ -52398,7 +52405,7 @@ var render = function() {
               : _c(
                   "span",
                   [
-                    _vm._v("\n            No\n            "),
+                    _vm._v("\n          No\n          "),
                     _c("font-awesome-icon", { attrs: { icon: "undo" } })
                   ],
                   1
@@ -52516,7 +52523,7 @@ var render = function() {
     _vm._v(" "),
     _c("audio", {
       ref: "audiofile",
-      staticStyle: { display: "none" },
+      staticClass: "sr-only",
       attrs: { loop: _vm.innerLoop, src: _vm.file, preload: "auto" }
     })
   ])
@@ -52676,6 +52683,7 @@ var render = function() {
           attrs: {
             file: _vm.track.url,
             title: _vm.track.title,
+            cover: _vm.track.cover,
             autoplay: false,
             loop: true
           },

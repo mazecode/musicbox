@@ -41,8 +41,9 @@
       <audio-player-vue
         :file="track.url"
         :title="track.title"
-        :autoplay="false"
-        :loop="true"
+        :cover="track.cover"
+        :autoplay=false
+        :loop=true
         @forward="nextTrack($event)"
         @backward="previousTrack($event)"
       ></audio-player-vue>
@@ -64,11 +65,13 @@ export default {
     tracks: [
       {
         title: "That's what I want",
+        cover: "https://placeimg.com/50/50/people",
         url:
           "http://freemusicdownloads.world/wp-content/uploads/2017/05/Bruno-Mars-That\u2019s-What-I-Like-Official-Video-1.mp3"
       },
       {
         title: "Panda",
+        cover: "https://placeimg.com/50/50/people",
         url:
           "http://freemusicdownloads.world/wp-content/uploads/2017/05/Desiigner-Panda-Audio.mp3"
       }

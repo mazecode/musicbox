@@ -25,9 +25,9 @@
       </div>
     </div>
     <div class="row py2">
-      <div class="col-8">
+      <div class="col-12 col-md-8">
         <div class="media">
-          <img src="https://placeimg.com/50/50/people" class="mr-3" :alt="title" />
+          <img :src="cover" class="mr-3" :alt="title" />
           <div class="media-body text-white">
             <h5 class="mt-0">{{ title }}</h5>
           </div>
@@ -66,7 +66,7 @@
           <font-awesome-icon icon="volume-up" />
         </button>
         <input type="range" min="0" max="100" v-model.lazy.number="volume" v-show="showVolume" />
-				<div class="btn-group dropup">
+        <div class="btn-group dropup">
           <button
             class="btn btn-link btn-sm"
             data-toggle="dropdown"
@@ -83,7 +83,7 @@
       </div>
     </div>
 
-    <audio :loop="innerLoop" ref="audiofile" :src="file" preload="auto" style="display: none;"></audio>
+    <audio class="sr-only" :loop="innerLoop" ref="audiofile" :src="file" preload="auto"></audio>
   </div>
 </template>
 
@@ -107,6 +107,10 @@ export default {
       type: String,
       default: null,
       required: true
+    },
+    cover: {
+      type: String,
+      default: null
     }
   },
   data: () => ({
