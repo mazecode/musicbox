@@ -1,0 +1,81 @@
+<template>
+	<div class="container-fluid fixed-bottom">
+		<button class="btn btn-secondary btn-sm" @click.prevent="togglePlayer" v-show="!showPlayer">
+			<font-awesome-icon icon="eye"/>
+		</button>
+		
+		<div class="row py-2 bg-dark" v-show="showPlayer">
+			<div class="col-12 text-center">
+				<button class="btn bt-link btn-sm text-white" @click.prevent="stop">
+					<font-awesome-icon icon="stop"/>
+				</button>
+				<button class="btn bt-link btn-sm text-white" @click.prevent="back">
+					<font-awesome-icon icon="step-backward"/>
+				</button>
+				<button class="btn bt-link btn-sm text-white" @click.prevent="playPause">
+					<font-awesome-icon icon="play" v-if="!playing"/>
+					<font-awesome-icon icon="pause" v-else/>
+				</button>
+				<button class="btn bt-link btn-sm text-white" @click.prevent="next">
+					<font-awesome-icon icon="step-forward"/>
+				</button>
+				<button class="btn bt-link btn-sm text-white" @click.prevent="toggleLoop">
+					<font-awesome-icon icon="undo" v-if="innerLoop"/>
+					<span v-else>
+						No
+						<font-awesome-icon icon="undo"/>
+					</span>
+				</button>
+				<button class="btn bt-link btn-sm text-white" @click.prevent="mute">
+					<font-awesome-icon icon="volume-down" v-if="!muted"/>
+					<font-awesome-icon icon="volume-mute" v-else/>
+				</button>
+				<button class="btn bt-link btn-sm text-white" @click.prevent @mouseenter="showVolume = true">
+					<font-awesome-icon icon="volume-up"/>
+				</button>
+				<input type="range" min="0" max="100" v-model.lazy.number="volume" v-show="showVolume"/>
+			</div>
+			
+			<div class="col-12 p-0 m-0">
+				<div class="pull-left">
+					<small>{{ currentTime }}</small>
+				</div>
+				<div class="pull-right">
+					<small>{{ durationTime }}</small>
+				</div>
+			</div>
+			
+			<div class="col-12 p-0 m-0">
+				<div v-on:click="seek" class="player-progress" title="Time played : Total time">
+					<div class="progress" style>
+						<div
+								class="progress-bar"
+								:style="{ width: this.percentComplete + '%' }"
+								role="progressbar"
+								:aria-valuenow="this.percentComplete"
+								aria-valuemin="0"
+								aria-valuemax="100"
+						></div>
+					</div>
+				</div>
+				<div class="btn-group dropup">
+					<button
+							class="btn btn-link btn-sm"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+					>
+						<font-awesome-icon icon="ellipsis-v"/>
+					</button>
+					<div class="dropdown-menu">
+						<button class="btn btn-link btn-sm" @click="togglePlayer">Show/Hide</button>
+						<button class="btn btn-link btn-sm" @click.prevent="download">Download</button>
+					</div>
+				</div>
+				<span class="likes">{{ likes }}</span>
+			</div>
+		</div>
+		
+		<audio :loop="innerLoop" ref="audiofile" :src="trackFile" preload="auto" style="display: none;"></audio>
+	</div>
+</template>

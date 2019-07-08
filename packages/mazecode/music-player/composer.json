@@ -8,12 +8,10 @@
         "album"
     ],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "mazecode",
-            "email": "diego.feliud@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "mazecode",
+        "email": "diego.feliud@gmail.com"
+    }],
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0"

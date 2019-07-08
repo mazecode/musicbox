@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "c9290f8650c607045065342784ab84eb",
@@ -1202,12 +1202,11 @@
         },
         {
             "name": "mazecode/music-player",
-            "version": "9999999-dev",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./packages/mazecode/music-player",
-                "reference": "7f5bec91a50868a2990ca864e65c657c3e603652",
-                "shasum": null
+                "reference": "27c4a07f6c0284f48da581ce86bd25eb8230c23b"
             },
             "require": {
                 "php": ">=7.0"
@@ -4293,12 +4292,11 @@
         },
         {
             "name": "mazecode/vuejs-generator",
-            "version": "9999999-dev",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./packages/mazecode/vue-generator",
-                "reference": "85963aa29f1e3bb261db8be3ed16e62c692433f6",
-                "shasum": null
+                "reference": "bc7dd46c9a7a49e9906d73628a6064f45c029411"
             },
             "require": {
                 "php": ">=7.0"
@@ -5037,16 +5035,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.0.1",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18"
+                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c99e3be9d3e85f60646f152f9002d46ed7770d18",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
+                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
                 "shasum": ""
             },
             "require": {
@@ -5082,7 +5080,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2018-10-30T05:52:18+00:00"
+            "time": "2019-07-08T05:24:54+00:00"
         },
         {
             "name": "phpunit/phpunit",

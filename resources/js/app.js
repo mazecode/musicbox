@@ -2,17 +2,19 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import { dom, library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { routes } from './routes';
 import App from './views/App';
 
 Vue.use(VueRouter)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-library.add(faUserSecret)
+library.add(fas, fab, far);
+dom.watch();
 
 Vue.config.productionTip = false;
 
