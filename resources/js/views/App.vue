@@ -42,8 +42,8 @@
         :file="track.url"
         :title="track.title"
         :cover="track.cover"
-        :autoplay=false
-        :loop=true
+        :autoplay=true
+        :loop=false
         @forward="nextTrack($event)"
         @backward="previousTrack($event)"
       ></audio-player-vue>
@@ -79,28 +79,30 @@ export default {
     track: undefined,
     selectedTrack: 0
   }),
-  mounted() {
+  created() {
     this.track = this.tracks[this.selectedTrack];
   },
   methods: {
-    nextTrack(track) {
+    async nextTrack(track) {
       try {
         if (this.selectedTrack + 1 <= this.tracks.length - 1) {
           this.selectedTrack++;
+        } else {
+          this.selectedTrack = 0;
         }
 
-        this.track = this.tracks[this.selectedTrack];
+        this.track = await this.tracks[this.selectedTrack];
       } catch (err) {
         console.log(err);
-      }
+      } 
     },
-    previousTrack(track) {
+    async previousTrack(track) {
       try {
         if (this.selectedTrack - 1 >= 0) {
           this.selectedTrack--;
         }
 
-        this.track = this.tracks[this.selectedTrack];
+        this.track = await this.tracks[this.selectedTrack];
       } catch (err) {
         console.log(err);
       }

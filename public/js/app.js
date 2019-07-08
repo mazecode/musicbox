@@ -15638,6 +15638,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
 //
 //
 //
@@ -15768,7 +15778,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.innerLoop = this.loop;
-    this.trackFile = this.file;
+    this.playing = this.playing;
   },
   mounted: function mounted() {
     var _this = this;
@@ -15782,21 +15792,195 @@ __webpack_require__.r(__webpack_exports__);
     this.track.addEventListener("play", function () {
       _this.playing = true;
     });
+    this.track.addEventListener("ended",
+    /*#__PURE__*/
+    _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.next();
+
+            case 2:
+              _context.next = 4;
+              return true;
+
+            case 4:
+              _this.autoPlay = _context.sent;
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
   },
   methods: {
-    playPause: function playPause() {
-      this.playing = !this.playing;
-    },
-    stop: function stop() {
-      this.playing = false;
-      this.track.currentTime = 0;
-    },
-    next: function next() {
-      this.$emit("forward", true);
-    },
-    previous: function previous() {
-      this.$emit("backward", true);
-    },
+    play: function () {
+      var _play = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return true;
+
+              case 2:
+                this.playing = _context2.sent;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function play() {
+        return _play.apply(this, arguments);
+      }
+
+      return play;
+    }(),
+    pause: function () {
+      var _pause = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return false;
+
+              case 2:
+                this.playing = _context3.sent;
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function pause() {
+        return _pause.apply(this, arguments);
+      }
+
+      return pause;
+    }(),
+    stop: function () {
+      var _stop = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return false;
+
+              case 2:
+                this.playing = _context4.sent;
+                _context4.next = 5;
+                return 0;
+
+              case 5:
+                this.track.currentTime = _context4.sent;
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function stop() {
+        return _stop.apply(this, arguments);
+      }
+
+      return stop;
+    }(),
+    next: function () {
+      var _next2 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return this.$emit("forward", true);
+
+              case 2:
+                _context5.next = 4;
+                return this.stop();
+
+              case 4:
+                _context5.next = 6;
+                return true;
+
+              case 6:
+                this.autoPlay = _context5.sent;
+
+              case 7:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function next() {
+        return _next2.apply(this, arguments);
+      }
+
+      return next;
+    }(),
+    previous: function () {
+      var _previous = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return this.$emit("backward", true);
+
+              case 2:
+                _context6.next = 4;
+                return this.stop();
+
+              case 4:
+                _context6.next = 6;
+                return true;
+
+              case 6:
+                this.autoPlay = _context6.sent;
+
+              case 7:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function previous() {
+        return _previous.apply(this, arguments);
+      }
+
+      return previous;
+    }(),
     mute: function mute() {
       if (this.muted) {
         return this.volume = this.previousVolume;
@@ -15971,7 +16155,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Player_AudioPlayer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Player/AudioPlayer.vue */ "./resources/js/components/Player/AudioPlayer.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Player_AudioPlayer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Player/AudioPlayer.vue */ "./resources/js/components/Player/AudioPlayer.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -16031,7 +16223,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AudioPlayerVue: _components_Player_AudioPlayer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AudioPlayerVue: _components_Player_AudioPlayer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -16048,32 +16240,94 @@ __webpack_require__.r(__webpack_exports__);
       selectedTrack: 0
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.track = this.tracks[this.selectedTrack];
   },
   methods: {
-    nextTrack: function nextTrack(track) {
-      try {
-        if (this.selectedTrack + 1 <= this.tracks.length - 1) {
-          this.selectedTrack++;
-        }
+    nextTrack: function () {
+      var _nextTrack = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(track) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
 
-        this.track = this.tracks[this.selectedTrack];
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    previousTrack: function previousTrack(track) {
-      try {
-        if (this.selectedTrack - 1 >= 0) {
-          this.selectedTrack--;
-        }
+                if (this.selectedTrack + 1 <= this.tracks.length - 1) {
+                  this.selectedTrack++;
+                } else {
+                  this.selectedTrack = 0;
+                }
 
-        this.track = this.tracks[this.selectedTrack];
-      } catch (err) {
-        console.log(err);
+                _context.next = 4;
+                return this.tracks[this.selectedTrack];
+
+              case 4:
+                this.track = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 7]]);
+      }));
+
+      function nextTrack(_x) {
+        return _nextTrack.apply(this, arguments);
       }
-    }
+
+      return nextTrack;
+    }(),
+    previousTrack: function () {
+      var _previousTrack = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(track) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+
+                if (this.selectedTrack - 1 >= 0) {
+                  this.selectedTrack--;
+                }
+
+                _context2.next = 4;
+                return this.tracks[this.selectedTrack];
+
+              case 4:
+                this.track = _context2.sent;
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[0, 7]]);
+      }));
+
+      function previousTrack(_x2) {
+        return _previousTrack.apply(this, arguments);
+      }
+
+      return previousTrack;
+    }()
   }
 });
 
@@ -52354,24 +52608,35 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn bt-link btn-sm text-white",
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                return _vm.playPause($event)
-              }
-            }
-          },
-          [
-            !_vm.playing
-              ? _c("font-awesome-icon", { attrs: { icon: "play" } })
-              : _c("font-awesome-icon", { attrs: { icon: "pause" } })
-          ],
-          1
-        ),
+        !_vm.playing
+          ? _c(
+              "button",
+              {
+                staticClass: "btn bt-link btn-sm text-white",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.play($event)
+                  }
+                }
+              },
+              [_c("font-awesome-icon", { attrs: { icon: "play" } })],
+              1
+            )
+          : _c(
+              "button",
+              {
+                staticClass: "btn bt-link btn-sm text-white",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.pause($event)
+                  }
+                }
+              },
+              [_c("font-awesome-icon", { attrs: { icon: "pause" } })],
+              1
+            ),
         _vm._v(" "),
         _c(
           "button",
@@ -52684,8 +52949,8 @@ var render = function() {
             file: _vm.track.url,
             title: _vm.track.title,
             cover: _vm.track.cover,
-            autoplay: false,
-            loop: true
+            autoplay: true,
+            loop: false
           },
           on: {
             forward: function($event) {

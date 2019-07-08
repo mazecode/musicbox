@@ -40,9 +40,11 @@
         <button class="btn bt-link btn-sm text-white" @click.prevent="previous">
           <font-awesome-icon icon="step-backward" />
         </button>
-        <button class="btn bt-link btn-sm text-white" @click.prevent="playPause">
-          <font-awesome-icon icon="play" v-if="!playing" />
-          <font-awesome-icon icon="pause" v-else />
+        <button class="btn bt-link btn-sm text-white" @click.prevent="play" v-if="!playing">
+          <font-awesome-icon icon="play" />
+        </button>
+        <button class="btn bt-link btn-sm text-white" @click.prevent="pause" v-else>
+          <font-awesome-icon icon="pause"  />
         </button>
         <button class="btn bt-link btn-sm text-white" @click.prevent="next">
           <font-awesome-icon icon="step-forward" />
@@ -127,7 +129,7 @@ export default {
   }),
   created() {
     this.innerLoop = this.loop;
-    this.trackFile = this.file;
+    this.playing = this.playing;
   },
   mounted() {
     this.track = this.$el.querySelectorAll("audio")[0];
@@ -140,25 +142,31 @@ export default {
     this.track.addEventListener("play", () => {
       this.playing = true;
     });
-    this.track.addEventListener("onended", async () => {
+    this.track.addEventListener("ended", async () => {
       await this.next();
+      this.autoPlay = await true;
     });
   },
   methods: {
-    playPause() {
-      this.playing = !this.playing;
+    async play() {
+      this.playing = await true;
     },
-    stop() {
-      this.playing = false;
-      this.track.currentTime = 0;
+    async pause() {
+      this.playing = await false;
+    },
+    async stop() {
+      this.playing = await false;
+      this.track.currentTime = await 0;
     },
     async next() {
       await this.$emit("forward", true);
-      this.playing = await true;
+      await this.stop();
+      this.autoPlay = await true;
     },
     async previous() {
       await this.$emit("backward", true);
-      this.playing = await true;
+      await this.stop();
+      this.autoPlay = await true;
     },
     mute() {
       if (this.muted) {
@@ -184,7 +192,7 @@ export default {
         this.loaded = true;
         this.durationSeconds = parseInt(this.track.duration);
 
-        return (this.playing = this.autoPlay);
+        return ( this.playing = this.autoPlay);
       }
 
       throw new Error("Failed to load sound file.");
@@ -206,7 +214,7 @@ export default {
       let hhmmss = new Date(val * 1000).toISOString().substr(11, 8);
 
       return hhmmss.indexOf("00:") === 0 ? hhmmss.substr(3) : hhmmss;
-    },
+    }
   },
   computed: {
     currentTime() {
