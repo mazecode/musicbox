@@ -1,0 +1,41 @@
+{
+	"name": "mazecode/vuejs-generator",
+	"description": "VueJS file generator",
+	"keywords": [
+		"vue",
+		"js",
+		"generator"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "mazecode",
+			"email": "diego.feliud@gmail.com"
+		}
+	],
+	"version": "1.0.0",
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=7.0"
+	},
+	"require-dev": {},
+	"autoload": {
+		"psr-4": {
+			"Mazecode\\VueGenerator\\": "src/"
+		},
+		"files": [
+			"src/helpers.php"
+		]
+	},
+	"prefer-stable": true,
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Mazecode\\VueGenerator\\VueGeneratorServiceProvider"
+			]
+		}
+	},
+	"config": {
+		"sort-packages": true
+	}
+}

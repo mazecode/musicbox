@@ -1,0 +1,56 @@
+{
+	"name": "mazecode/music-library",
+	"description": "Music Library package",
+	"keywords": [
+		"music",
+		"library",
+		"song",
+		"album"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "mazecode",
+			"email": "diego.feliud@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=7.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7.5",
+		"orchestra/testbench": "^3.8"
+	},
+	"autoload": {
+		"files": [
+			"src/helpers.php"
+		],
+		"psr-4": {
+			"Mazecode\\MusicLibrary\\": "src/"
+		},
+		"classmap": [
+			"src/database/seeds",
+			"src/database/factories"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Mazecode\\MusicLibrary\\Tests\\": "tests/"
+		}
+	},
+	"prefer-stable": true,
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Mazecode\\MusicLibrary\\MusicLibraryServiceProvider"
+			],
+			"aliases": {
+				"MusicLibrary": "Mazecode\\MusicLibrary\\Facades\\Facade"
+			}
+		}
+	},
+	"config": {
+		"sort-packages": true
+	}
+}

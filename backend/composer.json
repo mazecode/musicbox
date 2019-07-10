@@ -1,0 +1,93 @@
+{
+	"name": "mazecode/musicbox",
+	"type": "project",
+	"description": "Musicbox player library.",
+	"keywords": [
+		"Music",
+		"Boombox"
+	],
+	"license": "MIT",
+	"require": {
+		"php": "^7.1.3",
+		"fideloper/proxy": "^4.0",
+		"laravel/framework": "5.8.*",
+		"laravel/socialite": "^4.1",
+		"laravel/tinker": "^1.0",
+		"vinkla/hashids": "^6.0",
+		"waavi/sanitizer": "~1.0",
+		"mazecode/music-playlist": "dev-master",
+		"mazecode/music-library": "dev-master"
+	},
+	"require-dev": {
+		"barryvdh/laravel-debugbar": "^3.2",
+		"beyondcode/laravel-dump-server": "^1.0",
+		"filp/whoops": "^2.0",
+		"fzaninotto/faker": "^1.4",
+		"laracasts/generators": "^1.1",
+		"mockery/mockery": "^1.0",
+		"nunomaduro/collision": "^3.0",
+		"phpunit/phpunit": "^7.5",
+		"xethron/migrations-generator": "^2.0"
+	},
+	"repositories": [
+		{
+			"type": "path",
+			"url": "./packages/mazecode/music-library",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "./packages/mazecode/music-playlist",
+			"options": {
+				"symlink": true
+			}
+		},
+		{
+			"type": "path",
+			"url": "./packages/mazecode/vue-generator",
+			"options": {
+				"symlink": true
+			}
+		}
+	],
+	"config": {
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true
+	},
+	"extra": {
+		"laravel": {
+			"dont-discover": []
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/"
+		},
+		"classmap": [
+			"database/seeds",
+			"database/factories"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"scripts": {
+		"post-autoload-dump": [
+			"Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+			"@php artisan package:discover --ansi"
+		],
+		"post-root-package-install": [
+			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+		],
+		"post-create-project-cmd": [
+			"@php artisan key:generate --ansi"
+		]
+	}
+}

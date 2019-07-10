@@ -1,0 +1,56 @@
+{
+	"name": "mazecode/music-playlist",
+	"description": "Music Playlist package",
+	"keywords": [
+		"music",
+		"playlist",
+		"song",
+		"album"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "mazecode",
+			"email": "diego.feliud@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=7.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7.5",
+		"orchestra/testbench": "^3.8"
+	},
+	"autoload": {
+		"files": [
+			"src/helpers.php"
+		],
+		"psr-4": {
+			"Mazecode\\MusicPlayList\\": "src/"
+		},
+		"classmap": [
+			"src/database/seeds",
+			"src/database/factories"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Mazecode\\MusicPlayList\\Tests\\": "tests/"
+		}
+	},
+	"prefer-stable": true,
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Mazecode\\MusicPlayList\\MusicPlayListServiceProvider"
+			],
+			"aliases": {
+				"MusicPlaylist": "Mazecode\\MusicPlayList\\Facades\\Facade"
+			}
+		}
+	},
+	"config": {
+		"sort-packages": true
+	}
+}
