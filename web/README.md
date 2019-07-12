@@ -1,6 +1,6 @@
 # musicbox
 
-> MusicBox Player
+> MusicBox Library/Player
 
 ## Build Setup
 

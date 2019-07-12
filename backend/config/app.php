@@ -165,7 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Barryvdh\Debugbar\ServiceProvider::class,
+		Barryvdh\Debugbar\ServiceProvider::class,
+		Barryvdh\Cors\ServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
