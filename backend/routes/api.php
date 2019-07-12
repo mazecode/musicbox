@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/hello', function() {
-	return response()->json('Hello World', 200);
+	return response()->json('Welcome to MusicBox API Rest', 200);
 });
 
 Route::middleware('auth:api')->get('/user', function () {
