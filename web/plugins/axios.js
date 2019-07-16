@@ -3,8 +3,8 @@ export default function({ $axios, redirect }) {
     console.log('Making request to ' + config.url)
   })
 
-  $axios.onResponse(response => response);
-  $axios.onRequestError(err => console.log);
+  $axios.onResponse(response => response)
+  $axios.onRequestError(err => console.log)
   $axios.onResponseError(err => console.log)
 
   $axios.onError(error => {

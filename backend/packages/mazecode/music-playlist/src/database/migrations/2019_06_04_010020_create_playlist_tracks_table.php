@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Arr;
 
-class CreatePlayListTable extends Migration
+class CreatePlaylistTracksTable extends Migration
 {
 
 	/**
@@ -20,9 +20,9 @@ class CreatePlayListTable extends Migration
 		$trackTable =Arr::get($config, 'tracks.name') ?? 'tracks';
 		$trackId =Arr::get($config, 'tracks.id') ?? 'id';
 
-		Schema::create('playlist_tracks', function (Blueprint $table) {
-			$$table->unsignedBigInteger('playlist_id')->nullable();
-			$$table->unsignedBigInteger('track_id')->nullable();
+		Schema::create('playlist_tracks', function (Blueprint $table) use ($trackId, $trackTable) {
+			$table->unsignedBigInteger('playlist_id');
+			$table->unsignedBigInteger('track_id');
 
 			$table->foreign('playlist_id')->references('id')->on('playlists');
 			$table->foreign('track_id')->references($trackId)->on($trackTable);

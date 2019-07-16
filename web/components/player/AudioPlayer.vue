@@ -1,20 +1,24 @@
 <template>
   <div class="container-fluid fixed-bottom bg-dark">
-    <button class="btn btn-secondary btn-sm" @click.prevent="togglePlayer" v-show="!showPlayer">
+    <button
+      v-show="!showPlayer"
+      class="btn btn-secondary btn-sm"
+      @click.prevent="togglePlayer"
+    >
       <font-awesome-icon icon="eye" />
     </button>
 
-    <div class="row m-0 p-0" v-show="showPlayer">
+    <div v-show="showPlayer" class="row m-0 p-0">
       <div class="col-12">
         <div class="d-flex justify-content-center my-4">
           <!-- <span class="font-weight-bold indigo-text mr-2 mt-1">{{ currentTime }}</span> -->
           <div class="w-100">
             <h3 class="progress-title">{{ currentTime }}|{{ durationTime }}</h3>
             <div
-              @click="seek"
               class="progress orange"
               title="Time played | Total time"
               data-percentage="20"
+              @click="seek"
             >
               <div
                 class="progress-bar"
@@ -24,7 +28,7 @@
                 aria-valuemin="0"
                 aria-valuemax="100"
               >
-                <div class="progress-value"></div>
+                <div class="progress-value" />
               </div>
             </div>
           </div>
@@ -36,8 +40,12 @@
       <div class="col-12">
         <div class="media">
           <div class="media-body text-white">
-            <h6 class>{{ artist }}</h6>
-            <h5 class="mt-0">{{ title }}</h5>
+            <h6 class>
+              {{ artist }}
+            </h6>
+            <h5 class="mt-0">
+              {{ title }}
+            </h5>
           </div>
         </div>
       </div>
@@ -48,10 +56,18 @@
         <button class="btn bt-link btn-sm text-white" @click.prevent="previous">
           <font-awesome-icon :icon="['fas', 'fast-backward']" size="2x" />
         </button>
-        <button class="btn bt-link btn-sm text-white" @click.prevent="play" v-if="!playing">
+        <button
+          v-if="!playing"
+          class="btn bt-link btn-sm text-white"
+          @click.prevent="play"
+        >
           <font-awesome-icon :icon="['fas', 'play']" size="3x" />
         </button>
-        <button class="btn bt-link btn-sm text-white" @click.prevent="pause" v-else>
+        <button
+          v-else
+          class="btn bt-link btn-sm text-white"
+          @click.prevent="pause"
+        >
           <font-awesome-icon :icon="['fas', 'pause']" size="3x" />
         </button>
         <button class="btn bt-link btn-sm text-white" @click.prevent="next">
@@ -67,8 +83,8 @@ No
       </div>
       <div class="col-12">
         <button class="btn bt-link btn-sm text-white" @click.prevent="mute">
-          <font-awesome-icon :icon="['fas', 'volume-down']" v-if="!muted" />
-          <font-awesome-icon :icon="['fas', 'volumen-mute']" v-else />
+          <font-awesome-icon v-if="!muted" :icon="['fas', 'volume-down']" />
+          <font-awesome-icon v-else :icon="['fas', 'volumen-mute']" />
         </button>
         <button
           class="btn bt-link btn-sm text-white"
@@ -78,12 +94,12 @@ No
           <font-awesome-icon icon="volume-up" />
         </button>
         <input
+          v-show="showVolume"
+          v-model.lazy.number="volume"
           type="range"
           class="custom-range"
           min="0"
           max="100"
-          v-model.lazy.number="volume"
-          v-show="showVolume"
         />
         <div class="btn-group dropup">
           <button
@@ -95,14 +111,25 @@ No
             <font-awesome-icon icon="ellipsis-v" />
           </button>
           <div class="dropdown-menu">
-            <button class="btn btn-link btn-sm" @click="togglePlayer">Show/Hide</button>
-            <button class="btn btn-link btn-sm" @click.prevent="download">Download</button>
+            <button class="btn btn-link btn-sm" @click="togglePlayer">
+              Show/Hide
+            </button>
+            <button class="btn btn-link btn-sm" @click.prevent="download">
+              Download
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <audio class="sr-only" :loop="innerLoop" ref="audiofile" :src="file" preload controls></audio>
+    <audio
+      ref="audiofile"
+      class="sr-only"
+      :loop="innerLoop"
+      :src="file"
+      preload
+      controls
+    />
   </div>
 </template>
 
@@ -112,7 +139,7 @@ export default {
   props: {
     file: {
       type: String,
-      default: null,
+      default: null
     },
     autoPlay: {
       type: Boolean,
@@ -124,7 +151,7 @@ export default {
     },
     title: {
       type: String,
-      default: null,
+      default: null
     },
     cover: {
       type: String,
@@ -148,14 +175,39 @@ export default {
     volume: 100,
     previousVolume: 35
   }),
+  computed: {
+    currentTime() {
+      return this.convertTimeHHMMSS(this.currentSeconds)
+    },
+    durationTime() {
+      return this.convertTimeHHMMSS(this.durationSeconds)
+    },
+    percentComplete() {
+      return parseInt((this.currentSeconds / this.durationSeconds) * 100)
+    },
+    muted() {
+      return this.volume / 100 === 0
+    }
+  },
+  watch: {
+    playing(value) {
+      if (value) {
+        return this.track.play()
+      }
+      11
+      this.track.pause()
+    },
+    volume(value) {
+      this.showVolume = false
+      this.track.volume = this.volume / 100
+    }
+  },
   created() {
     this.innerLoop = this.loop
     this.playing = this.playing
-
-
   },
   mounted() {
-       this.track = this.$el.querySelectorAll('audio')[0]
+    this.track = this.$el.querySelectorAll('audio')[0]
 
     let supportsAudio = !!this.track.canPlayType
     if (supportsAudio) {
@@ -249,33 +301,6 @@ export default {
       let hhmmss = new Date(val * 1000).toISOString().substr(11, 8)
 
       return hhmmss.indexOf('00:') === 0 ? hhmmss.substr(3) : hhmmss
-    }
-  },
-  computed: {
-    currentTime() {
-      return this.convertTimeHHMMSS(this.currentSeconds)
-    },
-    durationTime() {
-      return this.convertTimeHHMMSS(this.durationSeconds)
-    },
-    percentComplete() {
-      return parseInt((this.currentSeconds / this.durationSeconds) * 100)
-    },
-    muted() {
-      return this.volume / 100 === 0
-    }
-  },
-  watch: {
-    playing(value) {
-      if (value) {
-        return this.track.play()
-      }
-      11
-      this.track.pause()
-    },
-    volume(value) {
-      this.showVolume = false
-      this.track.volume = this.volume / 100
     }
   }
 }

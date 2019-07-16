@@ -5,8 +5,9 @@ namespace App;
 use App\Pivots\SocialUser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubjectct
 {
     use Notifiable;
 
@@ -45,6 +46,16 @@ class User extends Authenticatable
     public function socialLogin()
     {
         return $this->belongsToMany(SocialLogin::class, 'social_users', 'user_id', 'social_login_id')->using(SocialUser::class);
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
 

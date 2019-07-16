@@ -1,16 +1,12 @@
-<template>
-
-</template>
+<template />
 
 <script>
 export default {
-  validate ({ params }) {
+  validate({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id)
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -165,15 +165,15 @@ return [
         /*
          * Package Service Providers...
          */
-		Barryvdh\Debugbar\ServiceProvider::class,
-		Barryvdh\Cors\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         Waavi\Sanitizer\Laravel\SanitizerServiceProvider::class,
-		Mazecode\MusicPlayList\MusicPlayListServiceProvider::class,
-		Mazecode\MusicLibrary\MusicLibraryServiceProvider::class,
+        Mazecode\MusicPlayList\MusicPlayListServiceProvider::class,
+        Mazecode\MusicLibrary\MusicLibraryServiceProvider::class,
         // Mazecode\VueGenerator\VueGeneratorServiceProvider::class,
 
         /*
