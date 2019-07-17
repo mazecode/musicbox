@@ -175,6 +175,7 @@ return [
         Mazecode\MusicPlayList\MusicPlayListServiceProvider::class,
         Mazecode\MusicLibrary\MusicLibraryServiceProvider::class,
         // Mazecode\VueGenerator\VueGeneratorServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -243,6 +244,7 @@ return [
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Sanitizer' => Waavi\Sanitizer\Laravel\Facade::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
     ],
 
 ];

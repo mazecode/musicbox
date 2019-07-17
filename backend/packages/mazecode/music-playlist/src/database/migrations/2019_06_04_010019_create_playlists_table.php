@@ -16,7 +16,7 @@ class CreatePlaylistsTable extends Migration
 	public function up()
 	{
 		$config = config('musicplaylist.tables');
-		
+
 		$userTable = Arr::get($config, 'users.name') ?? 'users';
 		$userId =  Arr::get($config, 'users.id') ?? 'id';
 
@@ -24,12 +24,13 @@ class CreatePlaylistsTable extends Migration
 			$table->bigIncrements('id');
 			$table->string('name', 200)->unique();
 			$table->integer('count_tracks')->default(0);
-			$table->unsignedBigInteger('user_id')->nullable();
+			$table->unsignedBigInteger('user_id')->nullable()->index();
 			$table->timestamps();
 			$table->softDeletes();
 
-			$table->foreign('user_id')->references($userId)->on($userTable);
-			$table->index(['id', 'name']);
+			$table->unique(['id', 'user_id']);
+
+			$table->foreign('user_id')->references($userId)->on($userTable)->onDelete('SET NULL');
 		});
 	}
 

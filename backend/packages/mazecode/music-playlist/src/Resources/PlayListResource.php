@@ -1,12 +1,12 @@
 <?php
 
-namespace Mazecode\MusicLibrary\Resources;
+namespace Mazecode\MusicPlayList\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\Resource;
 
-class AlbumResource extends Resource
+class PlayListResource extends Resource
 {
     /**
      * @param  Request  $request
@@ -17,13 +17,12 @@ class AlbumResource extends Resource
         // return parent::toArray($request);
 
         return [
-            'type' => 'albums',
-            'id' => (string) $this->id,
+            'type' => 'playlist',
+            'id' => (int) $this->id,
             'attributes' => [
+                'user' => (int) $this->user_id,
                 'name' => $this->name,
-                'published' => $this->published,
-                // 'created_at' => $this->created_at,
-                // 'updated_at' => $this->updated_at,
+                'tracks' => $this->tracks,
             ],
             'links' => [
                 'self' => route('albums.show', ['id' => $this->id]),

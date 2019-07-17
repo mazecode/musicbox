@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "backend"
+		},
+		{
+			"path": "web"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

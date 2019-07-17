@@ -25,8 +25,6 @@ class TrackResource extends JsonResource
             'id' => (string) $this->id,
             'attributes' => [
                 'name' => $this->name,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
             ],
             'links' => [
                 'self' => route('tracks.show', ['id' => $this->id]),

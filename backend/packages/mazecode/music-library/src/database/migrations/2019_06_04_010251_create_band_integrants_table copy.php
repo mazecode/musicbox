@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArtistAlbumsTable extends Migration
+class CreateBandIntegrantsTable extends Migration
 {
 
     /**
@@ -14,14 +14,14 @@ class CreateArtistAlbumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('artist_albums', function (Blueprint $table) {
+        Schema::create('band_integrants', function (Blueprint $table) {
+            $table->unsignedBigInteger('band_id')->index();
             $table->unsignedBigInteger('artist_id')->index();
-            $table->unsignedBigInteger('album_id')->index();
 
-            $table->unique(['artist_id', 'album_id']);
+            $table->unique(['band_id', 'artist_id']);
 
+            $table->foreign('band_id')->references('id')->on('artists')->onDelete('SET NULL');
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('SET NULL');
-            $table->foreign('album_id')->references('id')->on('albums')->onDelete('SET NULL');
         });
     }
 
@@ -33,7 +33,6 @@ class CreateArtistAlbumsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('artist_albums');
+        Schema::drop('band_integrantsbands');
     }
-
 }

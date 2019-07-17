@@ -15,15 +15,13 @@ class CreateInfluencesTable extends Migration
     public function up()
     {
         Schema::create('influences', function (Blueprint $table) {
-            // $table->bigIncrements('id');
-            $table->unsignedBigInteger('artist_id');
-            $table->unsignedBigInteger('influence_id');
-            // $table->timestamps();
-            // $table->softDeletes();
+            $table->unsignedBigInteger('artist_id')->index();
+            $table->unsignedBigInteger('influence_id')->index();
 
-            $table->foreign('artist_id')->references('id')->on('artists');
-            $table->foreign('influence_id')->references('id')->on('artists');
-            $table->index(['artist_id', 'influence_id']);
+            $table->unique(['artist_id', 'influence_id']);
+
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('SET NULL');
+            $table->foreign('influence_id')->references('id')->on('artists')->onDelete('SET NULL');
         });
     }
 

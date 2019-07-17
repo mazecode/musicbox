@@ -15,17 +15,15 @@ class CreateCollaborationsTable extends Migration
     public function up()
     {
         Schema::create('collaborations', function (Blueprint $table) {
-            // $table->bigIncrements('id');
-            $table->unsignedBigInteger('artist_id');
-            $table->unsignedBigInteger('feat_id');
-            $table->unsignedBigInteger('track_id');
-            // $table->timestamps();
-            // $table->softDeletes();
+            $table->unsignedBigInteger('artist_id')->index();
+            $table->unsignedBigInteger('feat_id')->index();
+            $table->unsignedBigInteger('track_id')->index();
 
-            $table->foreign('artist_id')->references('id')->on('artists');
-            $table->foreign('feat_id')->references('id')->on('artists');
-            $table->foreign('track_id')->references('id')->on('tracks');
-            $table->index(['artist_id', 'feat_id', 'track_id']);
+            $table->unique(['artist_id', 'feat_id', 'track_id']);
+
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('SET NULL');
+            $table->foreign('feat_id')->references('id')->on('artists')->onDelete('SET NULL');
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('SET NULL');
         });
     }
 

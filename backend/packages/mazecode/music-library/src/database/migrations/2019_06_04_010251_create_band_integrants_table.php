@@ -14,16 +14,16 @@ class CreateBandIntegrantsTable extends Migration
      */
     public function up()
     {
-        Schema::create('band_integrants', function (Blueprint $table) {
-            // $table->bigIncrements('id');
-            $table->unsignedBigInteger('band_id');
-            $table->unsignedBigInteger('artist_id');
-            // $table->timestamps();
-            // $table->softDeletes();
+        Schema::create('interactions', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->index();
+            $table->unsignedBigInteger('track_id')->index();
+            $table->boolean('liked')->default(false);
+            $table->integer('play_count')->default(0);
 
-            $table->foreign('band_id')->references('id')->on('artists');
-            $table->foreign('artist_id')->references('id')->on('artists');
-            $table->index(['band_id', 'artist_id']);
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('track_id')->references('id')->on('songs')->onDelete('cascade');
         });
     }
 

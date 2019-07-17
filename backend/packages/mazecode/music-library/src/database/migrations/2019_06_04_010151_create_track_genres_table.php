@@ -15,15 +15,13 @@ class CreateTrackGenresTable extends Migration
     public function up()
     {
         Schema::create('track_genres', function (Blueprint $table) {
-            // $table->bigIncrements('id');
             $table->unsignedBigInteger('track_id');
             $table->unsignedBigInteger('genre_id');
-            // $table->timestamps();
-            // $table->softDeletes();
 
-            $table->foreign('track_id')->references('id')->on('tracks');
-            $table->foreign('genre_id')->references('id')->on('genres');
-            $table->index(['track_id', 'genre_id']);
+            $table->unique(['track_id', 'genre_id']);
+
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('SET NULL');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('SET NULL');
         });
     }
 

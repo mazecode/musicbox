@@ -15,15 +15,13 @@ class CreateArtistGenresTable extends Migration
     public function up()
     {
         Schema::create('artist_genres', function (Blueprint $table) {
-            // $table->bigIncrements('id');
-            $table->unsignedBigInteger('artist_id');
-            $table->unsignedBigInteger('genre_id');
-            // $table->timestamps();
-            // $table->softDeletes();
+            $table->unsignedBigInteger('artist_id')->index();
+            $table->unsignedBigInteger('genre_id')->index();
 
-            $table->foreign('artist_id')->references('id')->on('artists');
-            $table->foreign('genre_id')->references('id')->on('genres') ;
-            $table->index(['artist_id', 'genre_id']);
+            $table->unique(['artist_id', 'genre_id']);
+
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('SET NULL');
+            $table->foreign('genre_id')->references('id')->on('genres')->onDelete('SET NULL');
         });
     }
 

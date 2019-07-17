@@ -2,7 +2,6 @@
   <div>
     <Navbar />
     <nuxt />
-    <audio-player />
   </div>
 </template>
 
@@ -10,12 +9,10 @@
 
 <script>
 import Navbar from '~/layouts/partials/Navbar';
-import AudioPlayer from '~/components/player/AudioPlayer.vue'
 
 export default {
   components: {
-    Navbar,
-    AudioPlayer
+    Navbar
   }
 }
 </script>

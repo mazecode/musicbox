@@ -13,6 +13,16 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // User::truncate();
+        $this->command->info('Seeding default users');
+
+        User::create([
+            'name' => 'Mazecode',
+            'username' => 'mazecode',
+            'email' => 'maze@code.cl',
+            'password' => bcrypt('maze')
+        ]);
+
+        $this->command->line('Default users inserted');
 
         // How many genres you need, defaulting to 10
         $count = (int)$this->command->ask('How many users do you need ?', 10);

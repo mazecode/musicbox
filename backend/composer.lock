@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "18c836becf2573a53c7ac8e5fbca5345",
+    "content-hash": "46446ead63cf89ccbf104725d28d746f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1640,16 +1640,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.21.0",
+            "version": "2.21.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "da6410b77f74eecd98d24ffb6dfecefccf3ca17f"
+                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/da6410b77f74eecd98d24ffb6dfecefccf3ca17f",
-                "reference": "da6410b77f74eecd98d24ffb6dfecefccf3ca17f",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a8bfb6631e3bc982427406d13ad817fc45d47b61",
+                "reference": "a8bfb6631e3bc982427406d13ad817fc45d47b61",
                 "shasum": ""
             },
             "require": {
@@ -1703,7 +1703,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-07-14T17:06:46+00:00"
+            "time": "2019-07-17T07:49:05+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -4087,6 +4087,84 @@
                 "transform input"
             ],
             "time": "2019-04-25T13:11:15+00:00"
+        },
+        {
+            "name": "zizaco/entrust",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Zizaco/entrust.git",
+                "reference": "ba9241426f9c518982d868e2cbac381a9581d802"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/ba9241426f9c518982d868e2cbac381a9581d802",
+                "reference": "ba9241426f9c518982d868e2cbac381a9581d802",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "~5.0",
+                "illuminate/console": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "illuminate/database": "~5.0",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.1",
+                "sami/sami": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zizaco\\Entrust\\EntrustServiceProvider"
+                    ],
+                    "aliases": {
+                        "Entrust": "Zizaco\\Entrust\\EntrustFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/commands"
+                ],
+                "psr-4": {
+                    "Zizaco\\Entrust\\": "src/Entrust/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Elkins",
+                    "homepage": "http://andrewelkins.com"
+                },
+                {
+                    "name": "Zizaco Zizuini",
+                    "email": "zizaco@gmail.com"
+                },
+                {
+                    "name": "Ben Batschelet",
+                    "homepage": "http://github.com/bbatsche"
+                },
+                {
+                    "name": "Michele Angioni",
+                    "email": "michele.angioni@gmail.com"
+                }
+            ],
+            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
+            "keywords": [
+                "acl",
+                "auth",
+                "illuminate",
+                "laravel",
+                "permission",
+                "roles"
+            ],
+            "time": "2017-11-13T23:46:19+00:00"
         }
     ],
     "packages-dev": [
@@ -6375,7 +6453,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "mazecode/music-library": 20,
-        "mazecode/music-playlist": 20
+        "mazecode/music-playlist": 20,
+        "zizaco/entrust": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

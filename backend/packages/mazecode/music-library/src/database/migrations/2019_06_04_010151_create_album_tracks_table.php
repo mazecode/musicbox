@@ -15,16 +15,14 @@ class CreateAlbumTracksTable extends Migration
     public function up()
     {
         Schema::create('album_tracks', function (Blueprint $table) {
-            // $table->bigIncrements('id');
-            $table->unsignedBigInteger('album_id');
-            $table->unsignedBigInteger('track_id');
             $table->tinyInteger('track_number')->nullable();
-            // $table->timestamps();
-            // $table->softDeletes();
+            $table->unsignedBigInteger('album_id')->index();
+            $table->unsignedBigInteger('track_id')->index();
 
-            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
-            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('cascade');
-            $table->index(['album_id', 'track_id']);
+            $table->unique(['album_id', 'track_id']);
+
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('SET NULL');
+            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('SET NULL');
         });
     }
 

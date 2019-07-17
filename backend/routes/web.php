@@ -1,7 +1,6 @@
 <?php
 
-// Route::get('/', function () { dd(config('musicplaylist')); return view('welcome'); });
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 // Auth Routes
 // Auth::routes();

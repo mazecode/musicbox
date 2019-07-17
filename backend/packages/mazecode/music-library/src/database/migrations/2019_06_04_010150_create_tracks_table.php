@@ -16,7 +16,11 @@ class CreateTracksTable extends Migration
         Schema::create('tracks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('duration', 20);
+            $table->float('length')->default(0);
+            $table->text('lyrics')->nullable();
+            $table->text('url')->nullable();
+            $table->integer('mtime');
+
             $table->dateTime('published');
             $table->timestamps();
             $table->softDeletes();

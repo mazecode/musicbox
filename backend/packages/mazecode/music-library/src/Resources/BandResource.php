@@ -26,8 +26,6 @@ class BandResource extends JsonResource
             'attributes' => [
                 'name' => $this->name,
                 'members' => ArtistResource::collection($this->whenLoaded('members')),
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
             ],
             'links' => [
                 'self' => route('artists.show', ['id' => $this->id]),

@@ -4,21 +4,24 @@ Route::get('/', function () {
     return response()->json('Welcome to MusicBox API Rest', 200);
 });
 
-Route::prefix('auth')->group(function () {
-    // Below mention routes are public, user can access those without any restriction.
-    // Create New User
+Route::prefix('auth')
+    //->middleware(['ability:owner|admin|root|create-user'])
+    ->group(function () {
     Route::post('register', 'AuthController@register');
-    // Login User
     Route::post('login', 'AuthController@login');
-
-    // Refresh the JWT Token
     Route::get('refresh', 'AuthController@refresh');
 
-    // Below mention routes are available only for the authenticated users.
+    // Route to create a new role
+    Route::post('role', 'JwtAuthenticateController@createRole');
+    // Route to create a new permission
+    Route::post('permission', 'JwtAuthenticateController@createPermission');
+    // Route to assign role to user
+    Route::post('assign-role', 'JwtAuthenticateController@assignRole');
+    // Route to attache permission to a role
+    Route::post('attach-permission', 'JwtAuthenticateController@attachPermission');
+
     Route::middleware('auth:api')->group(function () {
-        // Get user info
-        Route::get('user', 'AuthController@user');
-        // Logout user from application
+        Route::post('user', 'AuthController@user');
         Route::post('logout', 'AuthController@logout');
     });
 });
@@ -26,13 +29,3 @@ Route::prefix('auth')->group(function () {
 Route::middleware('auth:api')->get('/user', function () {
     return request()->user();
 });
-
-// Route::middleware('client_credentials')->get('/user', function () {
-//     return response()->json(["data" => true]);
-// });
-
-// Route::middleware('client_credentials')->get('/user/get', function () {
-//     $user_id = request()->get("uid");
-//     $user = App\User::where('id', '=', $user_id)->get()->first();
-//     return response()->json($user);
-// });

@@ -16,16 +16,18 @@ class CreatePlaylistTracksTable extends Migration
 	public function up()
 	{
 		$config = config('musicplaylist.tables');
-		
+
 		$trackTable =Arr::get($config, 'tracks.name') ?? 'tracks';
 		$trackId =Arr::get($config, 'tracks.id') ?? 'id';
 
 		Schema::create('playlist_tracks', function (Blueprint $table) use ($trackId, $trackTable) {
-			$table->unsignedBigInteger('playlist_id');
-			$table->unsignedBigInteger('track_id');
+			$table->unsignedBigInteger('playlist_id')->index();
+			$table->unsignedBigInteger('track_id')->index();
 
-			$table->foreign('playlist_id')->references('id')->on('playlists');
-			$table->foreign('track_id')->references($trackId)->on($trackTable);
+			$table->unique(['playlist_id', 'track_id']);
+
+			$table->foreign('playlist_id')->references('id')->on('playlists')->onDelete('SET NULL');
+			$table->foreign('track_id')->references($trackId)->on($trackTable)->onDelete('SET NULL');
 		});
 	}
 

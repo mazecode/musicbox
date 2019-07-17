@@ -34,8 +34,6 @@ class ArtistResource extends JsonResource
                 'members' => $this->when($this->is_music_band, function () {
                     return ArtistResource::collection($this->members);
                 }),
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
             ],
             'links' => [
                 'self' => route('artists.show', ['id' => $this->id]),

@@ -16,9 +16,10 @@
 		"laravel/tinker": "^1.0",
 		"mazecode/music-library": "dev-master",
 		"mazecode/music-playlist": "dev-master",
+		"tymon/jwt-auth": "1.0.0-rc.4.1",
 		"vinkla/hashids": "^6.0",
 		"waavi/sanitizer": "~1.0",
-		"tymon/jwt-auth": "1.0.0-rc.4.1"
+		"zizaco/entrust": "dev-master"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "^3.2",
