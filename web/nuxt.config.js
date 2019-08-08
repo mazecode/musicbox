@@ -85,6 +85,9 @@ export default {
    *
    */
   auth: {
+    login: '/login',
+    logout: '/login',
+    home: '/',
     strategies: {
       local: {
         endpoints: {
@@ -109,6 +112,11 @@ export default {
         client_id: "your gcloud oauth app client id"
       }
     },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      home: '/'
+    }
   },
 
   /*
@@ -135,13 +143,13 @@ export default {
    ** Build configuration
    */
   build: {
-    loaders: {
-      vue: {
-        transformAssetUrls: {
-          audio: "src"
-        }
-      }
-    },
+    // loaders: {
+    //   vue: {
+    //     transformAssetUrls: {
+    //       audio: "src"
+    //     }
+    //   }
+    // },
     /*
      ** You can extend webpack config here
      */
